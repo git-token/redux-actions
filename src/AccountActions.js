@@ -9,17 +9,12 @@ export default class GitTokenAccountWorker {
     this.profileApiUrl = url
 
     this.worker = new AccountWorker()
-
     this.worker.onerror = this.handleError
-
 
   }
 
   getProfile() {
-    this.worker.postMessage({
-      event: 'GET_PROFILE',
-      payload: this.profileApiUrl
-    })
+    this.worker.postMessage({ type: 'GET_PROFILE', value: this.profileApiUrl })
   }
 
   handleError(error) {

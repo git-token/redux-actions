@@ -35,17 +35,13 @@ var GitTokenAccountWorker = function () {
     this.profileApiUrl = url;
 
     this.worker = new _AccountWorker2.default();
-
     this.worker.onerror = this.handleError;
   }
 
   (0, _createClass3.default)(GitTokenAccountWorker, [{
     key: 'getProfile',
     value: function getProfile() {
-      this.worker.postMessage({
-        event: 'GET_PROFILE',
-        payload: this.profileApiUrl
-      });
+      this.worker.postMessage({ type: 'GET_PROFILE', value: this.profileApiUrl });
     }
   }, {
     key: 'handleError',
