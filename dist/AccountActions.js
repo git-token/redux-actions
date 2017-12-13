@@ -34,7 +34,7 @@ var GitTokenAccountWorker = function () {
 
     this.profileApiUrl = url;
 
-    this.worker = new _AccountWorker2.default();
+    this.worker = new _AccountWorker2.default({});
     this.worker.onerror = this.handleError;
   }
 

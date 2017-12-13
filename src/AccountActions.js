@@ -8,7 +8,7 @@ export default class GitTokenAccountWorker {
 
     this.profileApiUrl = url
 
-    this.worker = new AccountWorker()
+    this.worker = new AccountWorker({})
     this.worker.onerror = this.handleError
 
   }
