@@ -13,8 +13,9 @@ export default class GitTokenAccountWorker {
 
   }
 
-  getProfile() {
-    this.worker.postMessage({ type: 'GET_PROFILE', value: this.profileApiUrl })
+  getProfile({ url }) {
+    const value = url ? url : this.profileApiUrl
+    this.worker.postMessage({ type: 'GET_PROFILE', value })
   }
 
   handleError(error) {

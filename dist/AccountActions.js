@@ -40,8 +40,11 @@ var GitTokenAccountWorker = function () {
 
   (0, _createClass3.default)(GitTokenAccountWorker, [{
     key: 'getProfile',
-    value: function getProfile() {
-      this.worker.postMessage({ type: 'GET_PROFILE', value: this.profileApiUrl });
+    value: function getProfile(_ref2) {
+      var url = _ref2.url;
+
+      var value = url ? url : this.profileApiUrl;
+      this.worker.postMessage({ type: 'GET_PROFILE', value: value });
     }
   }, {
     key: 'handleError',
