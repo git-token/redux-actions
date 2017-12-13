@@ -35,26 +35,17 @@ var GitTokenAccountWorker = function () {
     this.profileApiUrl = url;
 
     this.worker = new _AccountWorker2.default();
-    this.worker.addEventListener('message', function (msg) {
-      console.log('Received Message from Account Worker', msg);
-    });
 
     this.worker.onerror = this.handleError;
-    this.worker.onmessage = this.handleMsg;
   }
 
   (0, _createClass3.default)(GitTokenAccountWorker, [{
     key: 'getProfile',
     value: function getProfile() {
-      var _this = this;
-
-      return function (dispatch) {
-        console.log('Get Profile!');
-        _this.worker.postMessage({
-          event: 'GET_PROFILE',
-          payload: _this.profileApiUrl
-        });
-      };
+      this.worker.postMessage({
+        event: 'GET_PROFILE',
+        payload: this.profileApiUrl
+      });
     }
   }, {
     key: 'handleError',
@@ -62,9 +53,15 @@ var GitTokenAccountWorker = function () {
       console.log('error', error);
     }
   }, {
-    key: 'handleMsg',
-    value: function handleMsg(msg) {
-      console.log('msg', msg);
+    key: 'handleMessages',
+    value: function handleMessages() {
+      var _this = this;
+
+      return function (dispatch) {
+        _this.worker.addEventListener('message', function (msg) {
+          dispatch(msg);
+        });
+      };
     }
   }]);
   return GitTokenAccountWorker;

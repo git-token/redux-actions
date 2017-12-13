@@ -9,31 +9,29 @@ export default class GitTokenAccountWorker {
     this.profileApiUrl = url
 
     this.worker = new AccountWorker()
-    this.worker.addEventListener('message', (msg) => {
-      console.log('Received Message from Account Worker', msg)
-    })
 
     this.worker.onerror = this.handleError
-    this.worker.onmessage = this.handleMsg
+
 
   }
 
   getProfile() {
-    return (dispatch) => {
-      console.log('Get Profile!')
-      this.worker.postMessage({
-        event: 'GET_PROFILE',
-        payload: this.profileApiUrl
-      })
-    }
+    this.worker.postMessage({
+      event: 'GET_PROFILE',
+      payload: this.profileApiUrl
+    })
   }
 
   handleError(error) {
     console.log('error', error)
   }
 
-  handleMsg(msg) {
-    console.log('msg', msg)
+  handleMessages() {
+    return (dispatch) => {
+      this.worker.addEventListener('message', (msg) => {
+        dispatch(msg)
+      })
+    }
   }
 
 }
