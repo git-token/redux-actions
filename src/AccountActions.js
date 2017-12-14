@@ -24,9 +24,8 @@ export default class GitTokenAccountActions {
       this.worker = new AccountWorker({})
       this.worker.onerror = this.handleError
       this.worker.addEventListener('message', ({ data }) => {
-        console.log('data', data)
         try {
-          const { type, id, value } = data
+          const { type, id, value } = JSON.parse(data)
           if (type) {
             dispatch({ type, id, value })
           }

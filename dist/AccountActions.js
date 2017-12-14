@@ -59,11 +59,11 @@ var GitTokenAccountActions = function () {
         _this.worker.addEventListener('message', function (_ref3) {
           var data = _ref3.data;
 
-          console.log('data', data);
           try {
-            var type = data.type,
-                id = data.id,
-                value = data.value;
+            var _JSON$parse = JSON.parse(data),
+                type = _JSON$parse.type,
+                id = _JSON$parse.id,
+                value = _JSON$parse.value;
 
             if (type) {
               dispatch({ type: type, id: id, value: value });
