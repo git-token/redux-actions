@@ -8,9 +8,6 @@ export default class GitTokenAccountActions {
 
     this.profileApiUrl = url
 
-    this.worker = new AccountWorker({})
-    this.worker.onerror = this.handleError
-
   }
 
   getProfile({ url }) {
@@ -22,12 +19,19 @@ export default class GitTokenAccountActions {
     console.log('error', error)
   }
 
-  handleMessages() {
+  worker() {
     return (dispatch) => {
+      this.worker = new AccountWorker({})
+      this.worker.onerror = this.handleError
       this.worker.addEventListener('message', ({ data }) => {
-        const { type, id, value } = data
-        if (type) {
-          dispatch({ type, id, value })
+        console.log('data', data)
+        try {
+          const { type, id, value } = data
+          if (type) {
+            dispatch({ type, id, value })
+          }
+        } catch (error) {
+          console.log('error', error)
         }
       })
     }
