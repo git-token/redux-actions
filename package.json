@@ -1,6 +1,6 @@
 {
   "name": "gittoken-redux-actions",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "GitToken Redux Actions",
   "main": "./src/index",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "github-api": "^3.0.0",
-    "gittoken-web-workers": "0.0.67"
+    "gittoken-web-workers": "0.0.68"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
