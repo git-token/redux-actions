@@ -9,9 +9,6 @@ export default class GitTokenAccountActions {
     this.profileApiUrl = url
 
     this.worker = new AccountWorker({})
-
-
-    this.worker.onmessage = this.handleMessage
     this.worker.onerror = this.handleError
 
   }
@@ -25,13 +22,9 @@ export default class GitTokenAccountActions {
     console.log('error', error)
   }
 
-  handleMessage(msg, cb) {
-    cb(msg)
-  }
-
   handleMessages() {
     return (dispatch) => {
-      this.worker.onmessage(({ data }) => {
+      this.worker.addEventListener('message', ({ data }) => {
         const { type, id, value } = data
         if (type) {
           dispatch({ type, id, value })

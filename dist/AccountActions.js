@@ -35,8 +35,6 @@ var GitTokenAccountActions = function () {
     this.profileApiUrl = url;
 
     this.worker = new _AccountWorker2.default({});
-
-    this.worker.onmessage = this.handleMessage;
     this.worker.onerror = this.handleError;
   }
 
@@ -54,17 +52,12 @@ var GitTokenAccountActions = function () {
       console.log('error', error);
     }
   }, {
-    key: 'handleMessage',
-    value: function handleMessage(msg, cb) {
-      cb(msg);
-    }
-  }, {
     key: 'handleMessages',
     value: function handleMessages() {
       var _this = this;
 
       return function (dispatch) {
-        _this.worker.onmessage(function (_ref3) {
+        _this.worker.addEventListener('message', function (_ref3) {
           var data = _ref3.data;
           var type = data.type,
               id = data.id,
