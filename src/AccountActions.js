@@ -3,7 +3,7 @@ import GitHubAPI from 'github-api'
 import AccountWorker from 'gittoken-web-workers/dist/Account.worker.js'
 
 
-export default class GitTokenAccountWorker {
+export default class GitTokenAccountActions {
   constructor({ url }) {
 
     this.profileApiUrl = url
@@ -15,7 +15,7 @@ export default class GitTokenAccountWorker {
 
   getProfile({ url }) {
     const value = url ? url : this.profileApiUrl
-    this.worker.postMessage({ type: 'GET_PROFILE', value })
+    this.worker.postMessage(JSON.stringify({ type: 'GET_PROFILE', value }))
   }
 
   handleError(error) {
@@ -24,8 +24,8 @@ export default class GitTokenAccountWorker {
 
   handleMessages() {
     return (dispatch) => {
-      this.worker.addEventListener('message', (msg) => {
-        dispatch(msg)
+      this.worker.addEventListener('message', ({ data }) => {
+        dispatch(JSON.parse(data))
       })
     }
   }
