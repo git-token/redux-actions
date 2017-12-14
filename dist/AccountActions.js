@@ -57,7 +57,7 @@ var GitTokenAccountActions = function () {
       var _this = this;
 
       return function (dispatch) {
-        _this.worker.addEventListener('message', function (_ref3) {
+        _this.worker.onmessage(function (_ref3) {
           var data = _ref3.data;
 
           console.log('data', data);

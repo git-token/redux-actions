@@ -24,7 +24,7 @@ export default class GitTokenAccountActions {
 
   handleMessages() {
     return (dispatch) => {
-      this.worker.addEventListener('message', ({ data }) => {
+      this.worker.onmessage(({ data }) => {
         console.log('data', data)
         const { type, id, value } = data
         if (type) {
