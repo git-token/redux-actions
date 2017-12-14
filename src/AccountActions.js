@@ -15,7 +15,7 @@ export default class GitTokenAccountActions {
 
   getProfile({ url }) {
     const value = url ? url : this.profileApiUrl
-    this.worker.postMessage(JSON.stringify({ type: 'GET_PROFILE', value }))
+    this.worker.postMessage({ type: 'GET_PROFILE', value })
   }
 
   handleError(error) {
@@ -25,7 +25,11 @@ export default class GitTokenAccountActions {
   handleMessages() {
     return (dispatch) => {
       this.worker.addEventListener('message', ({ data }) => {
-        dispatch(JSON.parse(data))
+        console.log('data', data)
+        const { type, id, value } = data
+        if (type) {
+          dispatch({ type, id, value })
+        }
       })
     }
   }

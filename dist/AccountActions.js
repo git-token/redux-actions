@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -48,7 +44,7 @@ var GitTokenAccountActions = function () {
       var url = _ref2.url;
 
       var value = url ? url : this.profileApiUrl;
-      this.worker.postMessage((0, _stringify2.default)({ type: 'GET_PROFILE', value: value }));
+      this.worker.postMessage({ type: 'GET_PROFILE', value: value });
     }
   }, {
     key: 'handleError',
@@ -64,7 +60,14 @@ var GitTokenAccountActions = function () {
         _this.worker.addEventListener('message', function (_ref3) {
           var data = _ref3.data;
 
-          dispatch(JSON.parse(data));
+          console.log('data', data);
+          var type = data.type,
+              id = data.id,
+              value = data.value;
+
+          if (type) {
+            dispatch({ type: type, id: id, value: value });
+          }
         });
       };
     }
