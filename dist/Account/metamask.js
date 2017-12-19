@@ -18,7 +18,7 @@ function metamask() {
     if (typeof window.web3 !== 'undefined') {
       _this.web3 = new Web3(window.web3.currentProvider);
       _this.eth = (0, _bluebird.promisifyAll)(_this.web3.eth);
-      _this.eth.getAccount().then(function (address) {
+      _this.eth.getAccounts().then(function (address) {
         alert('Found Address: ' + address);
       }).catch(function (error) {
         console.log('error', error);

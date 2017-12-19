@@ -5,7 +5,7 @@ export default function metamask() {
     if (typeof window.web3 !== 'undefined') {
       this.web3 = new Web3(window.web3.currentProvider)
       this.eth = promisifyAll(this.web3.eth)
-      this.eth.getAccount().then((address) => {
+      this.eth.getAccounts().then((address) => {
         alert(`Found Address: ${address}`)
       }).catch((error) => {
         console.log('error', error)
