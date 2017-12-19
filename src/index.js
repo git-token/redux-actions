@@ -1,7 +1,7 @@
-import AccountActions from './AccountActions'
+import Account from './Account/index'
 import RegistryActions from './RegistryActions'
 
 export {
-  AccountActions,
+  Account,
   RegistryActions
 }

@@ -1,6 +1,6 @@
 {
   "name": "gittoken-redux-actions",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "GitToken Redux Actions",
   "main": "./src/index",
   "scripts": {
