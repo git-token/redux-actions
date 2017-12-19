@@ -17,12 +17,19 @@ function metamask() {
   return function (dispatch) {
     if (typeof window.web3 !== 'undefined') {
       _this.web3 = new Web3(window.web3.currentProvider);
-      _this.eth = (0, _bluebird.promisifyAll)(_this.web3.eth);
-      _this.eth.getAccounts().then(function (address) {
-        alert('Found Address: ' + address);
+      _this.web3.eth = (0, _bluebird.promisifyAll)(_this.web3.eth);
+      _this.web3.version = (0, _bluebird.promisifyAll)(_this.web3.version);
+      _this.web3.eth.getAccountsAsync().then(function (accounts) {
+        if (!accounts.length) {
+          alert('MetaMask Account must be unlocked');
+        } else {
+          alert('Found Address: ' + accounts[0]);
+          return _this.web3.version.getNetworkAsync();
+        }
+      }).then(function (network) {
+        console.log('network', network);
       }).catch(function (error) {
         console.log('error', error);
-        alert('MetaMask Account must be unlocked');
       });
     } else {
       alert('Could not find MetaMask Plug-in, dispatch alert');
