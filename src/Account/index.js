@@ -7,8 +7,8 @@ import handleError from './handleError.js'
 import metamask from './metamask.js'
 
 export default class GitTokenAccountActions {
-  constructor({ url }) {
-    this.profileApiUrl = url
+  constructor({ profileApiUrl }) {
+    this.profileApiUrl = profileApiUrl
     this.worker = worker.bind(this)
     this.getProfile = getProfile.bind(this)
     this.handleError = handleError.bind(this)

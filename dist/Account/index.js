@@ -35,10 +35,10 @@ var _metamask2 = _interopRequireDefault(_metamask);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var GitTokenAccountActions = function GitTokenAccountActions(_ref) {
-  var url = _ref.url;
+  var profileApiUrl = _ref.profileApiUrl;
   (0, _classCallCheck3.default)(this, GitTokenAccountActions);
 
-  this.profileApiUrl = url;
+  this.profileApiUrl = profileApiUrl;
   this.worker = _worker2.default.bind(this);
   this.getProfile = _getProfile2.default.bind(this);
   this.handleError = _handleError2.default.bind(this);
