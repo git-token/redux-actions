@@ -1,4 +1,4 @@
-import AccountWorker from 'gittoken-web-workers/dist/Account.worker.js'
+import AccountWorker from 'gittoken-web-workers/dist/Account/Account.worker.js'
 
 export default function worker() {
   return (dispatch) => {

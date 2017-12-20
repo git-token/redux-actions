@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = worker;
 
-var _AccountWorker = require('gittoken-web-workers/dist/Account.worker.js');
+var _AccountWorker = require('gittoken-web-workers/dist/Account/Account.worker.js');
 
 var _AccountWorker2 = _interopRequireDefault(_AccountWorker);
 

@@ -33,6 +33,8 @@ function metamask() {
         console.log('error', error);
       });
     } else {
+      console.log('Does this update automatically?');
+      dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'setupStep', value: 'installMetamask' });
       dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: false });
       dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
     }
