@@ -26,6 +26,7 @@ function metamask() {
           dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
         } else {
           dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'address', value: accounts[0] });
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: false });
           return _this.web3.version.getNetworkAsync();
         }
       }).then(function (network) {
