@@ -22,6 +22,7 @@ function metamask() {
       _this.web3.eth.getAccountsAsync().then(function (accounts) {
         dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: true });
         if (!accounts.length) {
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'setupStep', value: 'unlockMetamask' });
           dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
         } else {
           dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'address', value: accounts[0] });
@@ -33,7 +34,6 @@ function metamask() {
         console.log('error', error);
       });
     } else {
-      console.log('Does this update automatically?');
       dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'setupStep', value: 'installMetamask' });
       dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: false });
       dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
