@@ -20,35 +20,21 @@ function metamask() {
       _this.web3.eth = (0, _bluebird.promisifyAll)(_this.web3.eth);
       _this.web3.version = (0, _bluebird.promisifyAll)(_this.web3.version);
       _this.web3.eth.getAccountsAsync().then(function (accounts) {
+        dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: true });
         if (!accounts.length) {
-          dispatch({
-            type: 'SET_ACCOUNT_DETAILS',
-            id: 'metaMaskLocked',
-            value: true
-          });
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
         } else {
-          dispatch({
-            type: 'SET_ACCOUNT_DETAILS',
-            id: 'address',
-            value: accounts[0]
-          });
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'address', value: accounts[0] });
           return _this.web3.version.getNetworkAsync();
         }
       }).then(function (network) {
-        dispatch({
-          type: 'SET_ACCOUNT_DETAILS',
-          id: 'network',
-          value: network
-        });
+        dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'network', value: network });
       }).catch(function (error) {
         console.log('error', error);
       });
     } else {
-      dispatch({
-        type: 'SET_ACCOUNT_DETAILS',
-        id: 'metaMaskInstalled',
-        value: false
-      });
+      dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: false });
+      dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true });
     }
   };
 }

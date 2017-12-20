@@ -7,35 +7,21 @@ export default function metamask() {
       this.web3.eth = promisifyAll(this.web3.eth)
       this.web3.version = promisifyAll(this.web3.version)
       this.web3.eth.getAccountsAsync().then((accounts) => {
+        dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: true })
         if (!accounts.length) {
-          dispatch({
-            type: 'SET_ACCOUNT_DETAILS',
-            id: 'metaMaskLocked',
-            value: true
-          })
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true })
         } else {
-          dispatch({
-            type: 'SET_ACCOUNT_DETAILS',
-            id: 'address',
-            value: accounts[0]
-          })
+          dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'address', value: accounts[0] })
           return this.web3.version.getNetworkAsync()
         }
       }).then((network) => {
-        dispatch({
-          type: 'SET_ACCOUNT_DETAILS',
-          id: 'network',
-          value: network
-        })
+        dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'network', value: network })
       }).catch((error) => {
         console.log('error', error)
       })
     } else {
-      dispatch({
-        type: 'SET_ACCOUNT_DETAILS',
-        id: 'metaMaskInstalled',
-        value: false
-      })
+      dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskInstalled', value: false })
+      dispatch({ type: 'SET_ACCOUNT_DETAILS', id: 'metaMaskLocked', value: true })
     }
   }
 }
