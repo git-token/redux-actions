@@ -6,6 +6,6 @@ export default function setupStep({ step }) {
       value: step
     })
 
-    location.href = `/setup/${step}`
+    location.href = `/account/setup/${step}`
   }
 }
