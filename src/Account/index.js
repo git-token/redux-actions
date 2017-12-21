@@ -1,11 +1,12 @@
 import Promise, { promisifyAll } from 'bluebird'
 import GitHubAPI from 'github-api'
 
-import worker from './worker.js'
-import getProfile from './getProfile.js'
-import handleError from './handleError.js'
-import metamask from './metamask.js'
-import verifyAccount from './verifyAccount.js'
+import worker from './worker'
+import getProfile from './getProfile'
+import handleError from './handleError'
+import metamask from './metamask'
+import verifyAccount from './verifyAccount'
+import setupStep from './setupStep'
 
 export default class GitTokenAccountActions {
   constructor({ profileApiUrl }) {
@@ -15,18 +16,7 @@ export default class GitTokenAccountActions {
     this.handleError = handleError.bind(this)
     this.metamask = metamask.bind(this)
     this.verifyAccount = verifyAccount.bind(this)
-  }
-
-  setup({ steps={}, step='' }) {
-    return (dispatch) => {
-      dispatch({
-        type: 'SET_ACCOUNT_DETAILS',
-        id: 'steps',
-        value: { ...steps, [step]: { ...steps[step], active: true } }
-      })
-
-      location.href = `/setup${steps[step]['link']}`
-    }
+    this.setupStep = setupStep.bind(this)
   }
 
 }
