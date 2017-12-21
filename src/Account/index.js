@@ -17,18 +17,12 @@ export default class GitTokenAccountActions {
     this.verifyAccount = verifyAccount.bind(this)
   }
 
-  setup({ steps, step }) {
+  setup({ steps={}, step='' }) {
     return (dispatch) => {
       dispatch({
         type: 'SET_ACCOUNT_DETAILS',
         id: 'steps',
-        value: {
-          ...steps,
-          [step]: {
-            ...steps[step],
-            active: true
-          }
-        }
+        value: { ...steps, [step]: { ...steps[step], active: true } }
       })
 
       location.href = `/setup${steps[step]['link']}`

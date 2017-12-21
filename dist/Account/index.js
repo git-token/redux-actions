@@ -66,16 +66,16 @@ var GitTokenAccountActions = function () {
   (0, _createClass3.default)(GitTokenAccountActions, [{
     key: 'setup',
     value: function setup(_ref2) {
-      var steps = _ref2.steps,
-          step = _ref2.step;
+      var _ref2$steps = _ref2.steps,
+          steps = _ref2$steps === undefined ? {} : _ref2$steps,
+          _ref2$step = _ref2.step,
+          step = _ref2$step === undefined ? '' : _ref2$step;
 
       return function (dispatch) {
         dispatch({
           type: 'SET_ACCOUNT_DETAILS',
           id: 'steps',
-          value: (0, _extends4.default)({}, steps, (0, _defineProperty3.default)({}, step, (0, _extends4.default)({}, steps[step], {
-            active: true
-          })))
+          value: (0, _extends4.default)({}, steps, (0, _defineProperty3.default)({}, step, (0, _extends4.default)({}, steps[step], { active: true })))
         });
 
         location.href = '/setup' + steps[step]['link'];
