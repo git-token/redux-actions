@@ -14,6 +14,6 @@ function setupStep(_ref) {
       value: step
     });
 
-    location.href = '/setup' + step;
+    location.href = '/setup/' + step;
   };
 }
