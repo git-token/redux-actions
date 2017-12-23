@@ -8,6 +8,10 @@ export default function verifyAccount({ address, username }) {
       type: 'string',
       name: 'GitHub Username',
       value: username
+    },{
+      type: 'bool',
+      name: 'Agree to GitToken Terms Of Service',
+      value: 'true'
     }]
 
     this.web3.currentProvider.sendAsync({

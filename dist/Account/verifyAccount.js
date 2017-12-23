@@ -19,6 +19,10 @@ function verifyAccount(_ref) {
       type: 'string',
       name: 'GitHub Username',
       value: username
+    }, {
+      type: 'bool',
+      name: 'Agree to GitToken Terms Of Service',
+      value: 'true'
     }];
 
     _this.web3.currentProvider.sendAsync({
