@@ -20,13 +20,19 @@ export default function verifyAccount({ address, username, termsOfService }) {
       value: 'true'
     }]
 
+    dispatch({
+      type: 'SET_ACCOUNT_SETUP_DETAILS',
+      id: 'verificationStatus',
+      value: 'verifying'
+    })
+
     this.web3.currentProvider.sendAsync({
       method: 'eth_signTypedData',
       params: [msgParams, address],
       from: address
     }, (error, sig) => {
       if (error) { console.log(error) }
-      // console.log('sig', sig)
+      console.log('sig', sig)
       axios({
         url: `${this.accountApiUrl}/verify`,
         method: 'POST',
@@ -37,7 +43,13 @@ export default function verifyAccount({ address, username, termsOfService }) {
         json: true
       }).then((verified) => {
         console.log('verified', verified)
-        // dispatch()
+
+        dispatch({
+          type: 'SET_ACCOUNT_SETUP_DETAILS',
+          id: 'verificationStatus',
+          value: 'verified'
+        })
+
       }).catch((error) => {
         console.log('error', error)
       })
