@@ -1,5 +1,11 @@
 export default function verifyAccount({ address, username }) {
-  console.log("address", address)
-  console.log("username", username)
-  alert('dispatch worker process to verify account')
+  return (dispatch) => {
+    const msg = `0x${this.web3.sha3(`${username}@${address}`)}`
+
+    this.web3.eth.signAsync(address, msg).then((sig) => {
+      console.log('sig', sig)
+    }).catch((error) => {
+      console.log('error', error)
+    })
+  }
 }
