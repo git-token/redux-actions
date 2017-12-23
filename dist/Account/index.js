@@ -43,10 +43,10 @@ var _setupStep2 = _interopRequireDefault(_setupStep);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var GitTokenAccountActions = function GitTokenAccountActions(_ref) {
-  var profileApiUrl = _ref.profileApiUrl;
+  var accountApiUrl = _ref.accountApiUrl;
   (0, _classCallCheck3.default)(this, GitTokenAccountActions);
 
-  this.profileApiUrl = profileApiUrl;
+  this.accountApiUrl = accountApiUrl;
   this.worker = _worker2.default.bind(this);
   this.getProfile = _getProfile2.default.bind(this);
   this.handleError = _handleError2.default.bind(this);

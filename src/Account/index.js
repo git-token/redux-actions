@@ -9,8 +9,8 @@ import verifyAccount from './verifyAccount'
 import setupStep from './setupStep'
 
 export default class GitTokenAccountActions {
-  constructor({ profileApiUrl }) {
-    this.profileApiUrl = profileApiUrl
+  constructor({ accountApiUrl }) {
+    this.accountApiUrl = accountApiUrl
     this.worker = worker.bind(this)
     this.getProfile = getProfile.bind(this)
     this.handleError = handleError.bind(this)

@@ -7,7 +7,7 @@ exports.default = getProfile;
 function getProfile(_ref) {
   var url = _ref.url;
 
-  var value = url ? url : this.profileApiUrl;
+  var value = url ? url : this.accountApiUrl + '/profile';
   this.worker.postMessage({ type: 'GET_PROFILE', value: value });
   return null;
 }
