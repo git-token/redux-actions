@@ -11,9 +11,21 @@ function verifyAccount(_ref) {
       username = _ref.username;
 
   return function (dispatch) {
-    var msg = '0x' + _this.web3.sha3(username + '@' + address);
+    var msgParams = [{
+      type: 'address',
+      name: 'Address',
+      value: address
+    }, {
+      type: 'string',
+      name: 'GitHub Username',
+      value: username
+    }];
 
-    _this.web3.eth.signAsync(address, msg).then(function (sig) {
+    _this.web3.eth.sendAsync({
+      method: 'eth_signTypedData',
+      params: [msgParams, address],
+      from: address
+    }).then(function (sig) {
       console.log('sig', sig);
     }).catch(function (error) {
       console.log('error', error);
