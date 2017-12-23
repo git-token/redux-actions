@@ -21,14 +21,16 @@ function verifyAccount(_ref) {
       value: username
     }];
 
-    _this.web3.eth.sendAsync({
+    _this.web3.currentProvider.sendAsync({
       method: 'eth_signTypedData',
       params: [msgParams, address],
       from: address
-    }).then(function (sig) {
+    }, function (error, sig) {
+      if (error) {
+        console.log(error);
+      }
+
       console.log('sig', sig);
-    }).catch(function (error) {
-      console.log('error', error);
     });
   };
 }

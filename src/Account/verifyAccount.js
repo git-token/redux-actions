@@ -10,14 +10,14 @@ export default function verifyAccount({ address, username }) {
       value: username
     }]
 
-    this.web3.eth.sendAsync({
+    this.web3.currentProvider.sendAsync({
       method: 'eth_signTypedData',
       params: [msgParams, address],
       from: address
-    }).then((sig) => {
+    }, (error, sig) => {
+      if (error) { console.log(error) }
+
       console.log('sig', sig)
-    }).catch((error) => {
-      console.log('error', error)
     })
   }
 }
