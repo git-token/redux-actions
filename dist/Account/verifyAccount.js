@@ -37,6 +37,12 @@ function verifyAccount(_ref) {
       value: 'true'
     }];
 
+    dispatch({
+      type: 'SET_ACCOUNT_SETUP_DETAILS',
+      id: 'verificationStatus',
+      value: 'verifying'
+    });
+
     _this.web3.currentProvider.sendAsync({
       method: 'eth_signTypedData',
       params: [msgParams, address],
@@ -45,7 +51,7 @@ function verifyAccount(_ref) {
       if (error) {
         console.log(error);
       }
-      // console.log('sig', sig)
+      console.log('sig', sig);
       (0, _axios2.default)({
         url: _this.accountApiUrl + '/verify',
         method: 'POST',
@@ -56,7 +62,12 @@ function verifyAccount(_ref) {
         json: true
       }).then(function (verified) {
         console.log('verified', verified);
-        // dispatch()
+
+        dispatch({
+          type: 'SET_ACCOUNT_SETUP_DETAILS',
+          id: 'verificationStatus',
+          value: 'verified'
+        });
       }).catch(function (error) {
         console.log('error', error);
       });
