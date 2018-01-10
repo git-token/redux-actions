@@ -17,7 +17,7 @@
     "axios": "^0.17.1",
     "bluebird": "^3.5.1",
     "github-api": "^3.0.0",
-    "gittoken-web-workers": "0.0.71"
+    "gittoken-web-workers": "0.0.72"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
